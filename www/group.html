@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Group</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0.min.js"></script>
+    <link href="css/jquery.mobile-1.4.0.min.css" rel="stylesheet" />
+    <script src="js/group.js"></script>
+</head>
+<body>
+    <div data-role="page" id="homepage">
+                
+
+      <div id="addGroupPanel" data-role="panel" data-display="overlay">
+        <div data-role="header" data-theme="b">
+          <h2>Add Group</h2>
+        </div>
+        
+        <div id"addGroup_data" data-role="content">
+          <label for="groupName">Group Name</label>
+          <input type="text" data-mini="true" name="name" id="name"  class="ui-btn-inline ui-mini">
+          <label for="description">Description</label>
+          <input type="text" data-mini="true" name="description" id="description"  class="ui-btn-inline ui-mini">
+          <a id="addGroup_btn" data-role="button" data-theme="b" class="ui-icon-plus">Add</a>
+          <a data-rel="close" data-role="button" data-theme="b"  data-icon="delete" data-inline="true">Close panel</a>
+        </div>
+		  </div>
+
+      <div data-role="header" data-theme="b">
+        <a href="index.html" rel="external" data-role="button" data-icon="back" data-iconpos="notext"></a>
+        <h1>Group Info</h1> 
+      </div>
+      
+      <div id="home" data-role="content">             
+        <br> <br> <br>
+        <ul id="List" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+        </ul>
+      </div>
+      <div data-role="footer" data-theme="a" data-position="fixed" id="footer" >
+        <div data-role="navbar" data-theme="d">
+          <ul>
+            <li><a id="addbtn" href="#addGroupPanel" data-rel="dialog" data-role="button" data-inline="true" data-theme="b" data-icon="plus">Add</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    
+<!-- group details -->
+<div id="detailGroup" data-role="dialog" data-theme="b">
+  <div data-role="header">
+    <h2>Group Detail</h2>  
+  </div>
+  <div data-role="content">
+    <ul id="detail" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+    </ul>
+  </div>
+</div>  
+
+<!-- group notes -->
+<div data-role="page" id="pageHome2">
+  <div data-role="header" data-theme="b"><a  data-rel="back" data-role="button" data-icon="back" data-iconpos="notext"></a>
+    <h1>Group Note</h1>
+    <a href="#addNote" data-rel="dialog" data-transition="flip" data-role="button" data-icon="plus" data-iconpos="notext"></a>
+  </div>
+
+  <div role="main" class="ui-content">
+    <ul id="viewNote" data-role="listview" data-inset="true" data-theme="b">
+    </ul>
+  </div>
+</div><!--end of page one-->
+
+<div data-role="page" id="addNote"><!--start of page addNote-->
+  <div data-role="header" data-theme="b">
+    <h1><i>ADD NOTE</i></h1>
+  </div>
+
+  <div id"addNote_data" data-role="content" data-theme="b">
+    <label for="noteTitle">TITLE:</label>
+    <input type="text" data-mini="true" name="noteTitle" id="noteTitle"  class="ui-btn-inline ui-mini">
+    <label for="noteDesc">NOTES:</label>
+    <textarea name="noteDesc" id="noteDesc" row="5" cols="10"></textarea>
+    <a id="addNote_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Add</a>
+  </div>
+</div><!--end of dialog addNote-->
+
+<div data-role="page" id="detailNotePanel"><!--start of detailNotePanel page-->
+  <div data-role="header" data-theme="b"><!--start of page header-->
+    <h2>NOTE</h2>  
+  </div><!--End of header-->
+  
+  <div role="content" data-theme="b">
+    <label for="className">TITLE</label>
+    <input name="noteTitle" id="noteTitle"  class="ui-btn-inline ui-mini">
+    <label for="date">NOTES:</label>
+    <textarea name="noteDesc" id="noteDesc" row="5" cols="10"></textarea>
+    <a id="editNote_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
+  </div>
+</div><!--end of detailNotePanel-->  
+              
+
+
+
+<!-- group appointment -->
+<div data-role="page" id="pageHome3">
+  <div data-role="header" data-theme="b"><a  data-rel="back" data-role="button" data-icon="back" data-iconpos="notext"></a>
+    <h1>Appointment</h1>
+    <a href="#addApm" data-rel="dialog" data-transition="flip" data-role="button" data-icon="plus" data-iconpos="notext"></a>
+  </div>
+
+  <div role="main" class="ui-content">
+    <ul id="viewApm" data-role="listview" data-inset="true" data-theme="b">
+    </ul>
+  </div>
+</div><!--end of page one-->
+
+<div data-role="page" id="addApm"><!--start of page addNote-->
+  <div data-role="header" data-theme="b">
+    <h3><i>ADD</i></h3>
+  </div>
+
+  <div id="addApm_data" data-role="content" data-theme="b">
+   <label for="className">Title:</label>
+    <input name="apmTitle" id="apmTitle"  class="ui-btn-inline ui-mini">
+    <label for="apmLocation">Location:</label>
+    <input type="text" data-mini="true" name="apmLocation" id="apmLocation"  class="ui-btn-inline ui-mini">
+    <label for="apmDate">Date:</label>
+    <input type="date" data-mini="true" name="apmDate" id="apmDate"  class="ui-btn-inline ui-mini">
+    <label for="apmTime">Time:</label>
+    <input type="time" data-mini="true" name="apmTime" id="apmTime"  class="ui-btn-inline ui-mini">
+    <label for="date">Description:</label>
+    <textarea name="apmDesc" id="apmDesc" row="5" cols="10"></textarea>
+    <a id="addApm_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Add</a>
+  </div>
+</div><!--end of dialog addNote-->
+
+<div data-role="page" id="detailApmPanel"><!--start of detailNotePanel page-->
+  <div data-role="header" data-theme="b"><!--start of page header-->
+    <h2>APPOINTMENT</h2>  
+  </div><!--End of header-->
+  
+  <div data-role="content" data-theme="b">
+    <label for="className">Title:</label>
+    <input name="apmTitle" id="apmTitle"  class="ui-btn-inline ui-mini">
+    <label for="apmLocation">Location:</label>
+    <input type="text" data-mini="true" name="apmLocation" id="apmLocation"  class="ui-btn-inline ui-mini">
+    <label for="apmDate">Date:</label>
+    <input type="date" data-mini="true" name="apmDate" id="apmDate"  class="ui-btn-inline ui-mini">
+    <label for="apmTime">Time:</label>
+    <input type="time" data-mini="true" name="apmTime" id="apmTime"  class="ui-btn-inline ui-mini">
+    <label for="date">Description:</label>
+    <textarea name="apmDesc" id="apmDesc" row="5" cols="10"></textarea>
+    <a id="editApm_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
+  </div>
+</div><!--end of detailNotePanel-->  
+
+
+ 
+</body>
+</html>
+
+
+
+
+
+

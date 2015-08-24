@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Meeting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0.min.js"></script>
+    <link href="css/jquery.mobile-1.4.0.min.css" rel="stylesheet" />
+    <script src="js/meeting.js"></script>
+</head>
+<body>
+    <div data-role="page" id="homepage">
+                <div id="addMeetingPanel" data-role="panel" data-display="overlay">
+                            <div data-role="header" data-theme="b">
+                                <h2>Add Meeting</h2>
+                            </div>
+                            <div id"addClass_data" data-role="content">
+                                   <label for="className">Meeting Name</label>
+                                     <input type="text" data-mini="true" name="name" id="name"  class="ui-btn-inline ui-mini">
+                                        <label for="location">Location</label>
+                                     <input type="text" data-mini="true" name="location" id="location"  class="ui-btn-inline ui-mini">
+                                      <label for="date">Date</label>
+                                     <input type="date" data-mini="true" name="date" id="date"  class="ui-btn-inline ui-mini">
+                                     <label for="date">Time</label>
+                                     <input type="time" data-mini="true" name="time" id="time"  class="ui-btn-inline ui-mini">
+                                     <label for="meetDes">Description</label>
+                                      <textarea name="meetDes" id="meetDes" row="5" cols="10"></textarea>
+                                      <!-- date, time, notes
+                                  -->
+
+
+
+                                      <a id="addMeeting_btn" data-role="button" data-theme="b" class="ui-icon-plus">Add</a>
+                                      <a data-rel="close" data-role="button" data-theme="b"  data-icon="delete" data-inline="true">Close panel</a>
+                            </div>
+    			</div>
+    			<div id="viewMeetingPanel" data-role="panel" data-display="overlay">
+                            <div data-role="header" data-theme="b">
+                                <h2>VIEW</h2>  
+                            </div>
+                            <div data-role="content">
+                                      <label for="className">Meeting Name</label>
+                                     <input name="name" id="name"  class="ui-btn-inline ui-mini">
+                                     <label for="location">Location</label>
+                                     <input type="text" data-mini="true" name="location" id="location"  class="ui-btn-inline ui-mini">
+                                      <label for="date">Date</label>
+                                     <input type="date" data-mini="true" name="date" id="date"  class="ui-btn-inline ui-mini">
+                                     <label for="date">Time</label>
+                                     <input type="time" data-mini="true" name="time" id="time"  class="ui-btn-inline ui-mini">
+                                     <label for="meetDes">Description</label>
+                                      <textarea name="meetDes" id="meetDes" row="5" cols="10"></textarea>
+                                     
+                            </div>
+    			</div>   
+     
+    
+        <div data-role="header" data-theme="b">
+           <a href="index.html" rel="external" data-role="button" data-icon="back" data-iconpos="notext"></a>
+           <h1>Meeting Info</h1> 
+        </div>
+        <div id="home" data-role="content">             
+            <br> <br> <br>
+            <ul id="List" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+            </ul>
+        </div>
+      <div data-role="footer" data-theme="a" data-position="fixed" id="footer" >
+	<div data-role="navbar" data-theme="d">
+		<ul>
+			<li><a id="addbtn" href="#addMeetingPanel" data-rel="dialog" data-role="button" data-inline="true" data-theme="b" data-icon="plus">Add</a></li>
+		</ul>
+		
+	</div>
+</div>
+
+    </div>
+ 
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Lecturer's Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0.min.js"></script>
+    <link href="css/jquery.mobile-1.4.0.min.css" rel="stylesheet" />
+    <script src="js/lecturer.js"></script>
+</head>
+
+
+<body>
+
+<div data-role="page">
+<div data-role="header" data-theme="b"><a href="index.html" rel="external" data-role="button" data-icon="back" data-iconpos="notext"></a>
+<h1>Lecturer's Info</h1><a href="#addLecturer" data-rel="dialog" data-role="button" data-icon="plus" data-iconpos="notext"></a>
+</div>
+
+<!-- content -->
+<div data-role="content">
+<ul id="displayLecturer" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+</ul>
+</div>
+
+</div>
+
+
+
+<div id="addLecturer" data-role="dialog"  data-theme="b">
+                            <div data-role="header">
+                                <h2>Add Lecturer</h2>
+                            </div>
+                            <div id"addLecturer_data" data-role="content">
+                                     <label for="date">Name</label>
+                                     <input type="text" data-mini="true" name="lectName" id="lectName"  class="ui-btn-inline ui-mini">
+									 <label for="date">Office</label>
+                                     <input type="text" data-mini="true" name="office" id="office"  class="ui-btn-inline ui-mini">
+                                     <label for="title">Telephone No:</label>
+                                     <input type="tel" data-mini="true" name="telno" id="telno"  class="ui-btn-inline ui-mini">
+									 <label for="title">Email:</label>
+                                     <input type="email" data-mini="true" name="lectEmel" id="lectEmel"  class="ui-btn-inline ui-mini">
+                                      <a id="addLecturer_btn" data-role="button" data-theme="a" class="ui-icon-plus">Add</a>
+                            </div>
+</div> 
+
+
+<div id="detailLecturer" data-role="dialog" data-theme="b">
+                            <div data-role="header">
+                                <h2>DETAIL</h2>  
+                            </div>
+                            <div data-role="content">
+							<ul id="detail" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+							</ul>
+                            </div>
+</div>  
+    
+ 
+ 
+                
+  
+              
+ 
+</body>
+</html>

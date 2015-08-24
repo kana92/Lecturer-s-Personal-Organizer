@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0.min.js"></script>
+	<script src="js/jquery.home.js" type="text/javascript"></script>
+	<script src="js/home.js" type="text/javascript"></script>
+    <link href="css/jquery.mobile-1.4.0.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div data-role="page">
+<div data-role="header" data-theme="b">
+<h1><b>LPO</b></h1><br><span></span><a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+</div>
+<div data-role="content">
+<center><h3><i>CLASS</h3></h1></center>
+<div>
+<ul data-role="listview" data-theme="a" data-inset="true">
+<li id="class"><center>No Class Added Yet</center></li>
+</ul>
+</div>
+<center><h3><i>TASK</h3></h1></center>
+<div>
+<ul id="task" data-role="listview" data-theme="a" data-inset="true">
+<li><center>No Task Added Yet</center></li>
+</ul>
+</div>
+</div>
+
+
+
+<div data-role="panel" data-position-fixed="true" data-theme="a" id="nav-panel">
+		<ul data-role="listview" data-theme="b" class="nav-search">
+           <li data-icon="carat-r"><a href="class.html" rel="external">Class</a></li>
+           <li data-icon="carat-r"><a href="group.html" rel="external">Group</a></li>
+           <li data-icon="carat-r"><a href="meeting.html" rel="external">Meeting</a></li>
+           <li data-icon="carat-r"><a href="task.html" rel="external">Task</a></li>
+           <li data-icon="carat-r"><a href="note.html" rel="external">Your Notes</a></li>
+           <li data-icon="carat-r"><a href="chat.html" rel="external">Chat</a></li>
+		</ul>
+
+	</div><!-- /panel -->
+</div>
+</body>
+</html>

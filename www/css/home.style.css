@@ -1,0 +1,19 @@
+#menu {
+	list-style-type:none;
+	font: 20px Verdana, Helvetica, sans-serif;
+}
+#menu li {
+	width: 180px;
+	margin: 5px;
+}
+#menu li a {
+	text-decoration:none;
+	padding: 10px 0 10px 20px;
+	background-color:#BAE800;
+	color:#FFF;
+	display:block;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;	
+	border-radius: 20px;
+}
+

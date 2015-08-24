@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Class</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0.min.js"></script>
+    <link href="css/jquery.mobile-1.4.0.min.css" rel="stylesheet" />
+    <script src="js/class.js"></script>
+</head>
+
+<body>
+  <div data-role="page" id="homepage">
+
+    <!-- add panel -->
+    <div id="addClassPanel" data-role="panel" data-display="overlay">
+
+      <div data-role="header" data-theme="b">
+          <h2>Add Class</h2>
+      </div>
+
+      <div id"addClass_data" data-role="content">
+        <label for="className">Class Name</label>
+        <input type="text" data-mini="true" name="name" id="name"  class="ui-btn-inline ui-mini">
+        <label for="location">Location</label>
+        <input type="text" data-mini="true" name="location" id="location"  class="ui-btn-inline ui-mini">
+        <label for="day">Day</label>
+        <select name="day" id="day">
+          <option value="Sunday">Sunday</option>
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+          <option value="Saturday">Saturday</option>
+        </select>   	
+        <label for="timefrom">From:</label>
+        <select name="timefrom" id="timefrom">
+          <option value="8am">8:00 A.M</option>
+          <option value="9am">9:00 A.M</option>
+          <option value="10am">10:00 A.M</option>
+          <option value="11am">11:00 A.M</option>
+          <option value="12pm">12:00 P.M</option>
+          <option value="1pm">1:00 P.M</option>
+          <option value="2pm">2:00 P.M</option>
+          <option value="3pm">3:00 P.M</option>
+          <option value="4pm">4:00 P.M</option>
+          <option value="5pm">5:00 P.M</option>
+          <option value="6pm">6:00 P.M</option>
+          <option value="7pm">7:00 P.M</option>
+          <option value="8pm">8:00 P.M</option>
+        </select>
+        <label for="timeto">To:</label>
+        <select name="timeto" id="timeto">	                                   
+          <option value="9am">9:00 A.M</option>
+          <option value="10am">10:00 A.M</option>
+          <option value="11am">11:00 A.M</option>
+          <option value="12pm">12:00 P.M</option>
+          <option value="1pm">1:00 P.M</option>
+          <option value="2pm">2:00 P.M</option>
+          <option value="3pm">3:00 P.M</option>
+          <option value="4pm">4:00 P.M</option>
+          <option value="5pm">5:00 P.M</option>
+          <option value="6pm">6:00 P.M</option>
+          <option value="7pm">7:00 P.M</option>
+          <option value="8pm">8:00 P.M</option>
+        </select>  	
+        <a id="addClass_btn" data-role="button" data-theme="b" class="ui-icon-plus">Add</a>
+        <a data-rel="close" data-role="button" data-theme="b"  data-icon="delete" data-inline="true">Close panel</a>
+      </div>
+
+    </div>
+
+
+    <!-- header -->
+    <div data-role="header" data-theme="b">
+      <a href="index.html" rel="external" data-role="button" data-icon="back" data-iconpos="notext"></a>
+      <h1>Class Info</h1> 
+    </div>
+
+    <!-- content -->
+    <div id="home" data-role="content">             
+      <br> <br> <br>
+      <ul id="List" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+      </ul>
+    </div>
+
+    <!-- footer -->
+    <div data-role="footer" data-theme="a" data-position="fixed" id="footer" >
+      <div data-role="navbar" data-theme="d">
+        <ul>
+          <li><a id="addbtn" href="#addClassPanel" data-rel="dialog" data-role="button" data-inline="true" data-theme="b" data-icon="plus">Add</a></li>
+		    </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- detail class -->
+  <div id="detailClass" data-role="dialog" data-theme="b">
+
+    <div data-role="header">
+      <h2>Class Detail</h2>  
+    </div>
+
+    <div data-role="content">
+      <ul id="detailc" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+      </ul>
+    </div>
+
+  </div>  
+
+<!-- Class representative page -->
+<div id="student" data-role="dialog" data-theme="b">
+
+  <div data-role="header">
+    <h2>Class Rep</h2>  
+  </div>
+
+  <div data-role="content">
+    <ul id="sdetail" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+    </ul>
+  </div>
+
+</div>  
+
+<!-- edit class rep page -->
+<div data-role="dialog" id="editClassRep">
+
+  <div data-role="header" data-theme="b">
+    <h2>Edit Class Rep</h2>  
+  </div>
+
+  <div role="content" data-theme="b">
+    <label for="classRep">Rep Name</label>
+    <input name="classRep" id="classRep"  class="ui-btn-inline ui-mini">
+    <label for="telno">Telephone Number: </label>
+    <input name="telno" id="telno"  class="ui-btn-inline ui-mini">
+    <label for="studentEmel">Email: </label>
+    <input name="studentEmel" id="studentEmel"  class="ui-btn-inline ui-mini">
+    <a id="editCR_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
+  </div>
+
+</div>
+
+<!-- class notes -->
+<div data-role="page" id="pageHome2">
+
+  <div data-role="header" data-theme="b"><a  data-rel="back" data-role="button" data-icon="back" data-iconpos="notext"></a>
+    <h1>Class Note</h1>
+    <a href="#addNote" data-rel="dialog" data-transition="flip" data-role="button" data-icon="plus" data-iconpos="notext"></a>
+  </div><!--header-->
+
+  <div role="main" class="ui-content">
+    <ul id="viewNote" data-role="listview" data-inset="true" data-theme="b">
+    </ul>
+  </div>
+
+</div><!--end of page one-->
+
+<div data-role="page" id="addNote"><!--start of page addNote-->
+  <div data-role="header" data-theme="b">
+    <h1><i>ADD NOTE</i></h1>
+  </div><!--end of header-->
+  
+  <div id="addNote_data" data-role="content" data-theme="b">
+    <label for="noteTitle">TITLE:</label>
+    <input type="text" data-mini="true" name="noteTitle" id="noteTitle"  class="ui-btn-inline ui-mini">
+    <label for="noteDesc">NOTES:</label>
+    <textarea name="noteDesc" id="noteDesc" row="5" cols="10"></textarea>
+    <a id="addNote_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Add</a>
+  </div><!--end of content-->
+</div><!--end of dialog addNote-->
+
+<div data-role="page" id="detailNotePanel"><!--start of detailNotePanel page-->
+  <div data-role="header" data-theme="b"><!--start of page header-->
+    <h2>NOTE</h2>  
+  </div><!--End of header-->
+  
+  <div data-role="content" data-theme="b">
+    <label for="className">TITLE</label>
+    <input name="noteTitle" id="noteTitle"  class="ui-btn-inline ui-mini">
+    <label for="date">NOTES:</label>
+    <textarea name="noteDesc" id="noteDesc" row="5" cols="10"></textarea>
+    <a id="editNote_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
+  </div>
+</div><!--end of detailNotePanel-->  
+  
+</body>
+</html>
+
+
+
+

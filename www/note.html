@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Lecturer's Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0.min.js"></script>
+    <link href="css/jquery.mobile-1.4.0.min.css" rel="stylesheet" />
+    <script src="js/note.js"></script>
+<style>
+.ui-dialog .ui-header, 
+.ui-dialog .ui-content, 
+.ui-dialog .ui-footer { 
+	max-width: 500px; 
+	margin: 10% auto 15px auto; 
+}
+</style>
+</head>
+<body>
+<!--Start of page one -->
+<div data-role="page" id="pageHome">
+
+<div data-role="header" data-theme="b"><a href="index.html" rel="external" data-role="button" data-icon="back" data-iconpos="notext"></a>
+<h1>Note</h1><a href="#addNote" data-rel="dialog" data-transition="flip" data-role="button" data-icon="plus" data-iconpos="notext"></a>
+</div><!--header-->
+<div role="main" class="ui-content">
+
+<ul id="viewNote" data-role="listview" data-inset="true" data-theme="b">
+</ul>
+</div>
+</div><!--end of page one-->
+
+<div data-role="page" id="addNote"><!--start of page addNote-->
+    <div data-role="header" data-theme="b">
+    <h1><i>ADD NOTE</i></h1>
+	</div><!--end of header-->
+    <div id"addNote_data" data-role="content" data-theme="b">
+    
+    <label for="noteCat">CATEGORY:</label>
+    <input type="text" data-mini="true" name="noteCat" id="noteCat"  class="ui-btn-inline ui-mini">
+    
+    <label for="noteTitle">TITLE:</label>
+    <input type="text" data-mini="true" name="noteTitle" id="noteTitle"  class="ui-btn-inline ui-mini">
+	
+    <label for="noteDesc">NOTES:</label>
+    <textarea name="noteDesc" id="noteDesc" row="5" cols="10"></textarea>
+	<a id="addNote_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Add</a>
+    </div><!--end of content-->
+</div><!--end of dialog addNote-->
+
+<div data-role="page" id="detailNotePanel"><!--start of detailNotePanel page-->
+                    <div data-role="header" data-theme="b"><!--start of page header-->
+                    <h2>NOTE</h2>  
+                    </div><!--End of header-->
+                    <div role="content" data-theme="b">
+                        <label for="className">CATEGORY:</label>
+                        <input name="noteCat" id="noteCat"  class="ui-btn-inline ui-mini">
+                        <label for="className">TITLE</label>
+                        <input name="noteTitle" id="noteTitle"  class="ui-btn-inline ui-mini">
+				        <label for="date">NOTES:</label>
+                        <textarea name="noteDesc" id="noteDesc" row="5" cols="10"></textarea>
+						<a id="editNote_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
+                    </div>
+</div><!--end of detailNotePanel-->  
+</body>
+</html>

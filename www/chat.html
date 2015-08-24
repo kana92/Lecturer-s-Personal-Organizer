@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html manifest="messenger.appcache">
+  <head>
+    <title>Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700,400italic" rel="stylesheet" type="text/css">
+    <link href="css/jquery.mobile-1.4.0.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/screen.css" type="text/stylesheet" />
+
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.0.min.js"></script>
+    <script src="http://cdn.pubnub.com/pubnub-3.5.1.js"></script>
+    <script src="js/messenger.js"></script>
+  </head>
+  <body>
+    <!-- Chat Main Page -->
+    <div data-role="page" id="homePage" data-theme="b" class="type-home">
+<div data-role="header">
+<h1>Chat</h1>
+<a href="index.html" rel="external" data-role="button" data-icon="back" data-iconpos="notext"></a>
+</div>
+      <div data-role="content" data-theme="b">
+        <div class="logo">
+          <h3>LPO</h3>
+        </div>
+        <input type="text" name="name" id="username" placeholder="Your unique display name " />
+        <a href="#" id="startChatButton" data-role="button">Enter Chat!</a>
+      </div>
+
+    </div><!-- end of Main page -->
+
+    <!-- Chat List Page -->
+    <div data-role="page" id="chatListPage" data-theme="b" class="type-chat-list">
+      <div data-role="header" data-theme="b">
+        <h1>Chats</h1><a href="#homePage" data-role="button" data-icon="back" data-iconpos="notext"></a>
+      </div>
+
+      <div data-role="content">
+        <input type="text" name="name" id="chatRoomName" placeholder="Chat Room Name" />
+        <a href="#" id="newChatButton" data-role="button">Create New Room</a>
+
+        <br />
+
+        <ul data-role="listview" data-split-icon="delete" data-split-theme="b" id="chatList">
+        </ul>
+      </div>
+    </div>
+
+    <!-- Chat Page -->
+    <div data-role="page" id="chatPage" data-theme="a" class="type-interior">
+
+      <div data-role="content">
+        <div class="content-primary">
+          <div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme="b">
+            <h1>Chat Room</h1><a href="#chatListPage" data-role="button" data-icon="back" data-iconpos="notext"></a>
+          </div>
+
+          <div data-role="content">
+            <ul data-role="listview" id="messageList">
+            </ul>
+          </div>
+
+          <div data-role="footer" data-theme="c">
+            <textarea id="messageContent"></textarea>
+              <div class="ui-grid-a">
+                <div class="ui-block-a"><a href="#" id="sendMessageButton" data-role="button" data-theme="b">Send Message</a></div>
+              </div>
+          </div>
+        </div>
+
+        <div class="content-secondary">
+          <ul data-role="listview" id="userList" data-theme="c">
+        
+          </ul>
+        </div>
+      </div><!-- /content -->
+
+    </div><!-- /page -->
+
+    <div data-role="dialog" id="delete" data-theme="b">
+      <div data-role="content">
+        <center><h3>Delete this room?</h3></center>
+        <center><a href="#" data-role="button" id="deleteButton" data-inline="true">Delete</a>
+        <a href="#" data-role="button" data-rel="back" data-inline="true">Cancel</a></center>
+      </div>
+    </div>
+
+    <div data-role="page" id="userListPage" data-theme="c">
+      <div data-role="header">
+        <h1>Chat</h1>
+      </div>
+
+      <div data-role="content">
+
+      </div>
+    </div>
+  </body>
+</html>
