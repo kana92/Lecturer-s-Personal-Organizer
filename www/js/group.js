@@ -2,6 +2,7 @@
 $(document).ready(function() {  
 
 	var db = window.openDatabase("LPO", "1.0", "My WebSQL LPO database", 5*1024*1024);
+	
 	db.transaction(
 		function(tx){
 			console.log("in create");
@@ -38,6 +39,21 @@ $(document).ready(function() {
 			//INTEGER PRIMARY KEY AUTOINCREMENT
 			tx.executeSql(
 				"CREATE TABLE IF NOT EXISTS appointT (id INTEGER PRIMARY KEY AUTOINCREMENT, sCat, apmName, location, date, time, appDes)",
+				[],
+				onSuccessExecuteSql,
+				onError
+			) // end tx exe
+		},//end tx fn
+		onError,
+		onReadyTransaction
+	)//end db trans
+
+	db.transaction(
+		function(tx){
+			console.log("in create");
+			//INTEGER PRIMARY KEY AUTOINCREMENT
+			tx.executeSql(
+				"CREATE TABLE IF NOT EXISTS memberT (id INTEGER PRIMARY KEY AUTOINCREMENT, mCat, memberName, memberTelNo, memberEmel)",
 				[],
 				onSuccessExecuteSql,
 				onError
@@ -163,6 +179,14 @@ function displayGroup(){
 					}); //end of db transaction	  	
 }
 
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 function detail(ID){
 	console.log("ID passed " + ID);
 	$("#detail").text("");
@@ -180,7 +204,7 @@ function detail(ID){
 						var ListItem = $('<li>\
 										<h2></h2>\
 										<p>'+ description +'</p>\
-										<p><a href="#">Group Member</a></p>\
+										<p><a data-name="View4" href="#pageHome4">Group Member</a></p>\
 										<p><a data-name="View" href="#pageHome3">Appointment</a></p>\
 										<p><a data-name="View2" href="#pageHome2">Group Note</a></p>\
 										</li>')
@@ -190,7 +214,8 @@ function detail(ID){
 										ListItem.attr("name", name);
 										ListItem.find("h2").text(name);
 
-
+										ListItem.find('[data-name="View4"]').attr("data-ID", name);
+										
 										ListItem.find('[data-name="View2"]').attr("data-ID", name);
 										ListItem.find('[data-name="View"]').attr("data-ID", name);
 
@@ -203,11 +228,16 @@ function detail(ID){
 						viewNote(IDs);
 						});
 
+						$("#detail").find('[data-name="View4"]').click(function () {
+					    var IDm = $(this).attr("data-ID");
+						viewMember(IDm);
+						});
+
+
 					
 
 						$("#detail").find('[data-name="View"]').click(function () {
 					    var IDk = $(this).attr("data-ID");	
-					    	   
 						viewApm(IDk);
 						});
 
@@ -230,6 +260,258 @@ function Delete(ID) {
 			  } //end fn
 			); //end of db transaction	
 }
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function viewMember(IDm)
+{	  console.log("ID passed " + IDm);
+ $("#viewMember").text("");
+window.globalvar3 = IDm;
+			db.transaction(
+					function(tx){
+						tx.executeSql("SELECT *  FROM memberT Where mCat=?", [IDm], function(tx,results){
+									if(results.rows.length == 0) {
+										console.log("No records found");
+										return false;
+									}
+
+									for (var i = 0; i < results.rows.length; i++) {
+													var rowItem3 = results.rows.item(i);
+													var ID = rowItem3.id;
+													var mCat = IDm;
+													var name = rowItem3.memberName;
+													var telno = rowItem3.memberTelNo;
+													var emel = rowItem3.memberEmel;
+
+
+													var ListElement = $("#viewMember");
+													var ListItem = $('<li>\
+																		<a data-name="Detail" data-rel="dialog" href="#detailMember" data-theme="b">\
+																		<h2><i>' + name + '</i></h2>\
+																		<a data-name="Delete" href="#" data-icon=delete >Delete</a>\
+																	 </a>\
+																	 </li>')
+
+													// Add Data to Item Element
+													ListItem.attr("id", ID);
+																	 
+												    ListItem.find('[data-name="Detail"]').attr("data-ID", ID);
+													ListItem.find('[data-name="Delete"]').attr("data-ID", ID);
+													ListElement.append(ListItem);
+									};	//end of FOR
+							     	$("#viewMember").listview("refresh");
+									// Add Click Events for List Item 
+
+									$("#viewMember").find('[data-name="Detail"]').click(function () {
+										var ID = Number($(this).attr("data-ID"));
+										DetailMember(ID);//pass ID to DetailNote function
+									});
+									
+									// Add Click Event for List Delete Button
+									$("#viewMember").find('[data-name="Delete"]').click(function () {
+										var ID = Number($(this).attr("data-ID"));
+										DeleteMember(ID);//pass specific note ID in database to DeleteNote function
+									}); 	
+							} ) // end of Select
+					}); //end of db transaction	  
+}
+//delete Note function
+function DeleteMember(ID) {
+    // What to do when Deleted
+			db.transaction(
+				function(tx){
+				tx.executeSql("DELETE FROM memberT where id=?", [ID], function(tx,results){
+					 	var ItemElement = $("#viewMember").find("li#" + ID);
+						ItemElement.remove();
+						$("#viewMember").listview("refresh");
+						viewMember(window.globalvar3);
+				})//end exe
+			  } //end fn
+			); //end of db transaction	
+}
+
+
+$("#addMember").find("#addMember_btn").click(function () {
+	 //collect data from input fields
+	 	get_mCat        = window.globalvar3;
+ 		get_memberName 	= $("#addMember").find("#memberName").val();
+		get_memberTel 	= $("#addMember").find("#memberTelNo").val();
+		get_memberEmel  = $("#addMember").find("#memberEmel").val();
+		
+
+
+		
+		
+		//INSERT DATA INTO DATABASE
+		db.transaction(
+			function(tx){
+				tx.executeSql( "INSERT INTO memberT(mCat, memberName, memberTelNo, memberEmel) VALUES(?,?,?,?)",
+				[get_mCat, get_memberName, get_memberTel, get_memberEmel],
+				onSuccessExecuteSql(),
+				onError() )
+			},
+			onError,
+			onReadyTransaction
+			
+		)
+		//close dialog after click add btn	for Notes
+		$("#addMember").dialog("close");
+		//call function and displays class
+		viewMember(window.globalvar3);
+ });
+
+
+
+// class representative detail
+function DetailMember(ID){
+	console.log("ID passed " + ID);
+	$("#mdetail").text("");
+			db.transaction(
+				function(tx){
+				tx.executeSql("SELECT *  FROM memberT Where id=?", [ID], function(tx,results){
+						$("mdetail").text('');
+						var rowItem = results.rows.item(0);
+						var ID = rowItem.id;
+						var name = rowItem.memberName;
+						var telephone = rowItem.memberTelNo;
+						var mail = rowItem.memberEmel;
+
+						var ListElement = $("#mdetail");
+						var ListItem = $('<li>\
+										<img src="images/profile.png">\
+										<h2></h2>\
+										<p><a href="tel:'+ telephone +'"> Call Representative </a></p>\
+										<p><a href="mailto:'+ mail +'">Email Representative</a></p>\
+										<button><a data-name="Detail" href="#editMember">Edit</a></button>\
+										</li>')
+										// Add Data to Item Element
+										ListItem.attr("id", ID);
+										ListItem.find("h2").text(name);
+										ListItem.find('[data-name="Detail"]').attr("data-ID", ID);
+
+										// Add Item Element to List Element
+										ListElement.append(ListItem);
+						$("#mdetail").listview("refresh");
+
+						$("#mdetail").find('[data-name="Detail"]').click(function () {
+							var ID = Number($(this).attr("data-ID"));
+							editMember(ID);//pass ID to DetailNote function
+						});
+						
+
+
+
+				   })//end tx.exeSql
+				 } //end fn
+				); //end of db transaction	
+}//end detail fn
+
+//edit class rep
+function editMember(ID){
+	console.log("ID passed " + ID);
+			db.transaction(
+				function(tx){
+				tx.executeSql("SELECT *  FROM memberT Where id=?", [ID], function(tx,results){
+						 rowItem = results.rows.item(0);
+						 memberID = rowItem.id;
+						//Put the clicked List Data into TextFields on Edit Update Page
+						
+						$("#editMember").find("#memberName").val(rowItem.memberName);
+						$("#editMember").find("#memberTelNo").val(rowItem.memberTelNo);
+						$("#editMember").find("#memberEmel").val(rowItem.memberEmel);
+				   })//end tx.exeSql
+				 } //end fn
+				); //end of db transaction	
+}//end Update fn
+
+$("#editMember").find("#editM_btn").click(function () {
+				get_m 	 = $("#editMember").find("#memberName").val();
+				get_t    = $("#editMember").find("#memberTelNo").val();
+				get_e    = $("#editMember").find("#memberEmel").val();
+								
+				addRepToDB(memberID,get_m,get_t,get_e); 
+				//close dialog after click add btn	
+				
+				
+})//end btn select
+
+function addRepToDB(memberID,get_m,get_t,get_e){
+						//UPDATE DATA INTO DATABASE
+						db.transaction(
+							function (tx) {
+								 tx.executeSql("UPDATE memberT SET memberName=?, memberTelNo=?, memberEmel=? WHERE id=?;",[get_m,get_t,get_e,memberID], onSuccessUpdate,onErrorUpdate )
+							} //end fn (tx)
+							
+						)//end db trans	
+						alert("Update note succesfully!");					
+}	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function viewApm(IDk)

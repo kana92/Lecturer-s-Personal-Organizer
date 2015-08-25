@@ -5,6 +5,8 @@ var db = window.openDatabase("LPO", "1.0", "My WebSQL LPO database", 5*1024*1024
 todayTask();
 displayTask();
 displayClass();
+displayAppointment();
+displayMeeting();
 
 function todayTask()
 {
@@ -90,6 +92,79 @@ function displayClass(){
 																	 ListElement.append(ListItem);
 									};	//end of FOR
 									
+							} ) // end of Select
+					}); //end of db transaction	  	
+}
+
+
+function displayAppointment(){
+	//Render Each item in list
+			db.transaction(
+					function(tx){
+						tx.executeSql( "SELECT * FROM appointT Where id > ? ",
+						['0'], function(tx,results){
+									if(results.rows.length == 0) {
+										console.log("No records found");
+										return false;
+									}
+									// Clear List
+                                     $("#apmnt").text("");
+									for (var i = 0; i < results.rows.length; i++) {
+													var rowItem2 = results.rows.item(i);
+													var nombor = i + 1;
+													var name = rowItem2.apmName;
+													var date = rowItem2.date;
+													var time = rowItem2.time;
+													
+
+
+													var ListElement = $("#apmnt");
+													var ListItem = $('<li>\
+										                                 '+ nombor +')\
+																		<b>'+ name +'</b>\
+																		<p><b>Date</b>: '+ date +' <b>Time</b>:' + time +'</p>\
+																		\
+																	 </li>')
+													ListElement.append(ListItem);
+									};	//end of FOR
+									// Refresh ListView Element
+							} ) // end of Select
+					}); //end of db transaction	  	
+}
+
+function displayMeeting(){
+	//Render Each item in list
+			db.transaction(
+					function(tx){
+						tx.executeSql( "SELECT * FROM meetingT Where id > ? ",
+						['0'], function(tx,results){
+									if(results.rows.length == 0) {
+										console.log("No records found");
+										return false;
+									}
+									// Clear List
+                                     $("#meeting").text("");
+									for (var i = 0; i < results.rows.length; i++) {
+
+													var rowItem = results.rows.item(i);
+													var nombor = i + 1;
+													var name = rowItem.name;
+													var location = rowItem.location;
+													var date = rowItem.date;
+													var time = rowItem.time;
+													
+
+													
+													var ListElement = $("#meeting");
+													var ListItem = $('<li>\
+										                                 '+ nombor +')\
+																		<b>'+ name +'</b>\
+																		<p><b>Date</b>: '+ date +' <b>Time</b>:' + time +'</p>\
+																		\
+																	 </li>')
+													ListElement.append(ListItem);
+									};	//end of FOR
+									// Refresh ListView Element
 							} ) // end of Select
 					}); //end of db transaction	  	
 }

@@ -98,8 +98,24 @@
     <a id="editNote_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
   </div>
 </div><!--end of detailNotePanel-->  
-              
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 <!-- group appointment -->
@@ -154,6 +170,79 @@
     <a id="editApm_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
   </div>
 </div><!--end of detailNotePanel-->  
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+<!-- group member -->
+<div data-role="page" id="pageHome4">
+  <div data-role="header" data-theme="b"><a  data-rel="back" data-role="button" data-icon="back" data-iconpos="notext"></a>
+    <h1>Member</h1>
+    <a href="#addMember" data-rel="dialog" data-transition="flip" data-role="button" data-icon="plus" data-iconpos="notext"></a>
+  </div>
+
+  <div role="main" class="ui-content">
+    <ul id="viewMember" data-role="listview" data-inset="true" data-theme="b">
+    </ul>
+  </div>
+</div><!--end of page one-->
+
+<div data-role="page" id="addMember"><!--start of page addMember-->
+  <div data-role="header" data-theme="b">
+    <h3><i>ADD</i></h3>
+  </div>
+
+  <div id="addMember_data" data-role="content" data-theme="b">
+   <label for="memberName">Name:</label>
+    <input name="memberName" id="memberName"  class="ui-btn-inline ui-mini">
+    <label for="memberTelNo">Tel No:</label>
+    <input name="memberTelNo" id="memberTelNo"  class="ui-btn-inline ui-mini">
+    <label for="memberEmel">E-mail:</label>
+    <input name="memberEmel" id="memberEmel"  class="ui-btn-inline ui-mini">
+   
+    <a id="addMember_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Add</a>
+  </div>
+</div><!--end of dialog addNote-->
+
+<!-- Member Detail page -->
+<div id="detailMember" data-role="dialog" data-theme="b">
+
+  <div data-role="header">
+    <h2>Member</h2>  
+  </div>
+
+  <div data-role="content">
+    <ul id="mdetail" data-role="listview" data-inset="true" data-split-icon="gear" data-theme="b">
+    </ul>
+  </div>
+
+</div>  
+
+<!-- edit class rep page -->
+<div data-role="dialog" id="editMember">
+
+  <div data-role="header" data-theme="b">
+    <h2>Edit Member</h2>  
+  </div>
+
+  <div role="content" data-theme="b">
+    <label for="memberName">Name</label>
+    <input name="memberName" id="memberName"  class="ui-btn-inline ui-mini">
+    <label for="memberTelNo">Telephone Number: </label>
+    <input name="memberTelNo" id="memberTelNo"  class="ui-btn-inline ui-mini">
+    <label for="memberEmel">Email: </label>
+    <input name="memberEmel" id="memberEmel"  class="ui-btn-inline ui-mini">
+    <a id="editM_btn" data-role="button" data-theme="b" data-rel="close" class="ui-icon-edit" data-inline="true">Update</a>
+  </div>
+
+</div>
 
 
  
